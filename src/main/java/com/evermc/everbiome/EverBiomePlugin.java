@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -42,9 +43,9 @@ public class EverBiomePlugin extends JavaPlugin {
             public Object onPacketOutAsync(Player receiver, Channel channel, Object packet) {
                 try {
                     if (Reflections.NMS_ClientboundLevelChunkPacket.isInstance(packet)) {
-                        int[] biomes = (int[])Reflections.NMS_ClientboundLevelChunkPacket_getBiomes.invoke(packet);
-                        int chunkX = (int)Reflections.NMS_ClientboundLevelChunkPacket_getX.invoke(packet);
-                        int chunkZ = (int)Reflections.NMS_ClientboundLevelChunkPacket_getZ.invoke(packet);
+                        int[] biomes = (int[])Reflections.NMS_ClientboundLevelChunkPacket_biomes.get(packet);
+                        int chunkX = (int)Reflections.NMS_ClientboundLevelChunkPacket_getX.get(packet);
+                        int chunkZ = (int)Reflections.NMS_ClientboundLevelChunkPacket_getZ.get(packet);
                         int baseX = chunkX << 4;
                         int baseZ = chunkZ << 4;
                         List<Config> configs = new ArrayList<>(EverBiomePlugin.this.config);
@@ -85,7 +86,8 @@ public class EverBiomePlugin extends JavaPlugin {
         // First, load biomes
         Object minecraftServer = Reflections.CB_CraftServer_getServer.invoke(Bukkit.getServer());
         Object registryAccess = Reflections.NMS_MinecraftServer_registryAccess.invoke(minecraftServer);
-        Object biomes = Reflections.NMS_RegistryAccess_registryOrThrow.invoke(registryAccess, Reflections.NMS_Registry_BIOME_REGISTRY_value);
+        Optional<?> biomesoptional = (Optional<?>)Reflections.NMS_RegistryAccess_registryOrThrow.invoke(registryAccess, Reflections.NMS_Registry_BIOME_REGISTRY_value);
+        Object biomes = biomesoptional.orElseThrow(RuntimeException::new);
         String[] files;
         try {
             files = FileUtil.getFiles(this, "biomes", ".*\\.json$");
@@ -100,13 +102,14 @@ public class EverBiomePlugin extends JavaPlugin {
         for (String file : files) {
             String key = "everbiome:" + file.substring(0, file.length() - 5);
             Object mcKey = Reflections.NMS_ResourceLocation_Constructor.newInstance(key);
-            boolean exists = (boolean)(Object)Reflections.NMS_Registry_containsKey.invoke(biomes, mcKey);
             Object biome = FileUtil.getBiomeFromJson(this, "biomes/" + file);
-            if (exists) {
+            try {
                 Object oldbiome = Reflections.NMS_Registry_get.invoke(biomes, mcKey);
+                if (oldbiome == null) throw new NullPointerException();
                 int oldid = (int)(Object)Reflections.NMS_Registry_getId.invoke(biomes, oldbiome);
+                if (oldid < 0) throw new NullPointerException();
                 Reflections.NMS_Registry_registerWithId.invoke(null, biomes, oldid, key, biome);
-            } else {
+            } catch (NullPointerException e) {
                 Reflections.NMS_Registry_register.invoke(null, biomes, key, biome);
             }
         }

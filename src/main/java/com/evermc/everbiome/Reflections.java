@@ -3,10 +3,12 @@ package com.evermc.everbiome;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -29,19 +31,15 @@ public class Reflections {
     public static final Class<?> NMS_MinecraftServer;
     public static final Class<?> NMS_Registry;
     public static final Class<?> NMS_RegistryAccess;
+    public static final Class<?> NMS_RegistryAccess_RegistryHolder;
     public static final Class<?> NMS_ResourceKey;
     public static final Class<?> NMS_ResourceLocation;
 
     public static final Method mojang_Codec_Parse;
     public static final Method mojang_DataResult_getOrThrow;
     public static final Method CB_CraftServer_getServer;
-    public static final Method NMS_ClientboundLoginPacket_registryAccess;
-    public static final Method NMS_ClientboundLevelChunkPacket_getBiomes;
-    public static final Method NMS_ClientboundLevelChunkPacket_getX;
-    public static final Method NMS_ClientboundLevelChunkPacket_getZ;
     public static final Method NMS_MinecraftServer_registryAccess;
     public static final Method NMS_RegistryAccess_registryOrThrow;
-    public static final Method NMS_Registry_containsKey;
     public static final Method NMS_Registry_entrySet;
     public static final Method NMS_Registry_get;
     public static final Method NMS_Registry_getId;
@@ -53,6 +51,9 @@ public class Reflections {
 
     public static final Constructor<?> NMS_ResourceLocation_Constructor;
 
+    public static final Field NMS_ClientboundLevelChunkPacket_biomes;
+    public static final Field NMS_ClientboundLevelChunkPacket_getX;
+    public static final Field NMS_ClientboundLevelChunkPacket_getZ;
 
     public static final Object mojang_JsonOps_INSTANCE_value;
     public static final Object NMS_Biome_NETWORK_CODEC_value;
@@ -72,19 +73,15 @@ public class Reflections {
             NMS_MinecraftServer = NMSClass("MinecraftServer", "server.MinecraftServer");
             NMS_Registry = NMSClass("IRegistry", "core.IRegistry", "core.Registry");
             NMS_RegistryAccess = NMSClass("IRegistryCustom", "core.IRegistryCustom", "core.RegistryAccess");
+            NMS_RegistryAccess_RegistryHolder = NMSClass("IRegistryCustom$Dimension", "core.IRegistryCustom$Dimension", "core.RegistryAccess$RegistryHolder");
             NMS_ResourceKey = NMSClass("ResourceKey", "resources.ResourceKey");
             NMS_ResourceLocation = NMSClass("MinecraftKey", "resources.MinecraftKey", "resources.ResourceLocation");
 
             mojang_Codec_Parse = getTypedMethod(mojang_Decoder, "parse", mojang_DataResult, null, null, 0, false, mojang_DynamicOps, Object.class);
             mojang_DataResult_getOrThrow = getTypedMethod(mojang_DataResult, "getOrThrow", true);
             CB_CraftServer_getServer = getTypedMethod(CB_CraftServer, "getServer", false);
-            NMS_ClientboundLoginPacket_registryAccess = getTypedMethod(NMS_ClientboundLoginPacket, NMS_RegistryAccess, false);
-            NMS_ClientboundLevelChunkPacket_getBiomes = getTypedMethod(NMS_ClientboundLevelChunkPacket, int[].class, false);
-            NMS_ClientboundLevelChunkPacket_getX = getTypedMethod(NMS_ClientboundLevelChunkPacket, null, int.class, null, null, 0, false);
-            NMS_ClientboundLevelChunkPacket_getZ = getTypedMethod(NMS_ClientboundLevelChunkPacket, null, int.class, null, null, 1, false);
             NMS_MinecraftServer_registryAccess = getTypedMethod(NMS_MinecraftServer, NMS_RegistryAccess, false);
-            NMS_RegistryAccess_registryOrThrow = getTypedMethod(NMS_RegistryAccess, NMS_Registry, false, NMS_ResourceKey);
-            NMS_Registry_containsKey = getTypedMethod(NMS_Registry, boolean.class, null, false, NMS_ResourceLocation);
+            NMS_RegistryAccess_registryOrThrow = getTypedMethod(NMS_RegistryAccess_RegistryHolder, Optional.class, false, NMS_ResourceKey);
             NMS_Registry_entrySet = getTypedMethod(NMS_Registry, Set.class, 
             List.of(
                 new AbstractMap.SimpleEntry<>(
@@ -93,7 +90,7 @@ public class Reflections {
                 )
             ), false);
             NMS_Registry_get = getTypedMethod(NMS_Registry, "get", Object.class, false, NMS_ResourceLocation);
-            NMS_Registry_getId = getTypedMethod(NMS_Registry, "getId", int.class, true);
+            NMS_Registry_getId = getTypedMethod(NMS_Registry, null, int.class, true);
             NMS_Registry_register = getTypedMethod(NMS_Registry, null, Object.class, false, NMS_Registry, String.class, Object.class);
             NMS_Registry_registerWithId = getTypedMethod(NMS_Registry, null, Object.class, false, NMS_Registry, int.class, String.class, Object.class);
             NMS_ResourceKey_location = getTypedMethod(NMS_ResourceKey, NMS_ResourceLocation, null, false);
@@ -107,6 +104,9 @@ public class Reflections {
                     List.of(NMS_Biome)
                 )
             ));
+            NMS_ClientboundLevelChunkPacket_biomes = getTypedField(NMS_ClientboundLevelChunkPacket, int[].class);
+            NMS_ClientboundLevelChunkPacket_getX = getTypedField(NMS_ClientboundLevelChunkPacket, null, int.class, null, field -> !Modifier.isStatic(field.getModifiers()), 0);
+            NMS_ClientboundLevelChunkPacket_getZ = getTypedField(NMS_ClientboundLevelChunkPacket, null, int.class, null, field -> !Modifier.isStatic(field.getModifiers()), 1);
             List<Field> NMS_Biome_Codecs = new ArrayList<>();
             for (int i = 0;; i ++) {
                 try {

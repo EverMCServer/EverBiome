@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    "implementation"("org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT")
+    "implementation"("org.spigotmc:spigot-api:1.16.2-R0.1-SNAPSHOT")
     "implementation"("com.comphenix.tinyprotocol:TinyProtocol:1.0.0-SNAPSHOT")
     "implementation"("io.netty:netty-all:4.0.23.Final")
 }

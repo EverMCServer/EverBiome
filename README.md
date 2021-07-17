@@ -2,6 +2,8 @@
 
 Use custom biomes without datapacks or affecting your map data in Minecraft 1.16.2+
 
+Tested versions: `1.16.5`, `1.17.1`
+
 ## Highlights
 
 - Fully supported Minecraft custom biome (worldgen format) (see [Wiki](https://minecraft.fandom.com/wiki/Custom_world_generation) for more information)
