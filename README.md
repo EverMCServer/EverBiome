@@ -76,7 +76,7 @@ Use custom biomes without datapacks or affecting your map data in Minecraft 1.16
 
 [![The rainbow](https://github.com/EverMCServer/EverBiome/blob/gh-pages/rainbow.min.jpg?raw=true)](https://github.com/EverMCServer/EverBiome/blob/gh-pages/rainbow.png?raw=true)
 <details>
-  <summary>Config for the doomsday</summary>
+  <summary>Config for the rainbow</summary>
   
   <details>
     <summary>config.json</summary>
