@@ -1,0 +1,45 @@
+
+[
+    {
+        "condition": {
+            "x": "0/280"
+        },
+        "to": "everbiome:red"
+    },
+    {
+        "condition": {
+            "x": "4/280"
+        },
+        "to": "everbiome:orange"
+    },
+    {
+        "condition": {
+            "x": "8/280"
+        },
+        "to": "everbiome:yellow"
+    },
+    {
+        "condition": {
+            "x": "12/280"
+        },
+        "to": "everbiome:green"
+    },
+    {
+        "condition": {
+            "x": "16/280"
+        },
+        "to": "everbiome:blue"
+    },
+    {
+        "condition": {
+            "x": "20/280"
+        },
+        "to": "everbiome:indigo"
+    },
+    {
+        "condition": {
+            "x": "24/280"
+        },
+        "to": "everbiome:violet"
+    }
+]

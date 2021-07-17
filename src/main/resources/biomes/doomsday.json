@@ -1,0 +1,27 @@
+{
+  "scale": 0.1,
+  "effects": {
+    "sky_color": 7798784,
+    "fog_color": 8912896,
+    "water_color": 16711680,
+    "water_fog_color": 16711680,
+    "grass_color": 7798784,
+    "foliage_color": 7798784,
+    "particle": {
+      "probability": 0.01,
+      "options": {
+        "type": "minecraft:lava"
+      }
+    },
+    "additions_sound": {
+      "sound": "minecraft:ambient.cave",
+      "tick_chance": 0.01
+    }
+  },
+  "precipitation": "rain",
+  "temperature": 2.0,
+  "downfall": 0.0,
+  "category": "the_end",
+  "parent": "the_end",
+  "depth": -1.0
+}

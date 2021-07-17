@@ -1,0 +1,16 @@
+{
+  "scale": 0.1,
+  "effects": {
+    "sky_color": 8103167,
+    "fog_color": 16776960,
+    "water_color": 16776960,
+    "water_fog_color": 16776960,
+    "grass_color": 16776960,
+    "foliage_color": 16776960
+  },
+  "precipitation": "rain",
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "category": "ocean",
+  "depth": -1.0
+}

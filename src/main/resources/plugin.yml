@@ -1,0 +1,12 @@
+name: EverBiome
+main: com.evermc.everbiome.EverBiomePlugin
+version: :"1.0"
+description: Use custom biomes without datapacks or affecting your map data.
+author: djytw
+load: STARTUP
+depend: []
+softdepend: []
+api-version: "1.16"
+commands:
+  everbiome:
+    description: EverBiome command
