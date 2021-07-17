@@ -26,3 +26,8 @@ jobs:
         mvn install
     - name: Build with Gradle
       run: ./gradlew build
+      
+    - uses: actions/upload-artifact@v2.2.0
+      with:
+        name: EverBiome-1.0
+        path: build/libs/EverBiome-1.0-all.jar
