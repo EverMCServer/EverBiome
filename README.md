@@ -1,5 +1,7 @@
 # EverBiome
 
+[![GitHub Actions](https://github.com/EverMCServer/EverBiome/actions/workflows/ci.yml/badge.svg)](https://github.com/EverMCServer/EverBiome/actions/workflows/ci.yml)
+
 Use custom biomes without datapacks or affecting your map data in Minecraft 1.16.2+
 
 Tested versions: `1.16.5`, `1.17.1`
