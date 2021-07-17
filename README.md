@@ -385,7 +385,7 @@ Example: select all blocks from x:-100 to x:100
 {"x": "-100~100"}
 ```
 
-- Select multiples of a number `remainder/divisor`
+- Select multiples of a number: `remainder/divisor`
 
 Example: select all blocks with x-axis coordinate divisible by 100
 ```json
@@ -397,7 +397,7 @@ Example: select all blocks with x-axis coordinate divide by 100 remains 64
 {"x": "64/100"}
 ```
 
-- Select multiples of a number in range `rangestart~rangeend/divisor`
+- Select multiples of a number in range: `rangestart~rangeend/divisor`
 
 Example: select all blocks with x-axis coordinate divisible by 100 and between 1000~1200 (will select 1000,1100,1200)
 ```json
@@ -409,7 +409,7 @@ Example: select all blocks with x-axis coordinate divide by 100 remains 64 and b
 {"x": "1064~1200/100"}
 ```
 
-## LICENCE
+## LICENSE
 
 [GPLv2 License](https://github.com/EverMCServer/EverBiome/blob/master/LICENSE) as we based on (shadowed) the [TinyProtocol](https://github.com/aadnk/ProtocolLib/tree/master/TinyProtocol) library.
 
