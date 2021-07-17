@@ -300,12 +300,12 @@ Use custom biomes without datapacks or affecting your map data in Minecraft 1.16
 
 </details>
 
-### The toxic water (partially applied for y>80)
+### The toxic river (replaces all `minecraft:river` biome)
 
-[![The toxic water](https://github.com/EverMCServer/EverBiome/blob/gh-pages/partial_y.min.jpg?raw=true)](https://github.com/EverMCServer/EverBiome/blob/gh-pages/partial_y.png?raw=true)
+[![The toxic water](https://github.com/EverMCServer/EverBiome/blob/gh-pages/toxic_river.min.jpg?raw=true)](https://github.com/EverMCServer/EverBiome/blob/gh-pages/toxic_river.png?raw=true)
 
 <details>
-  <summary>Config for the toxic water</summary>
+  <summary>Config for the toxic river</summary>
   
   <details>
     <summary>config.json</summary>
@@ -314,7 +314,7 @@ Use custom biomes without datapacks or affecting your map data in Minecraft 1.16
 [
     {
         "condition": {
-            "y": "80~300"
+            "biome": "minecraft:river"
         },
         "to": "everbiome:ocean_toxic"
     }
@@ -405,4 +405,11 @@ Example: select all blocks with x-axis coordinate divide by 100 remains 64 and b
 {"x": "1064~1200/100"}
 ```
 
+## LICENCE
+
+[GPLv2 License](https://github.com/EverMCServer/EverBiome/blob/master/LICENSE) as we based on (shadowed) the [TinyProtocol](https://github.com/aadnk/ProtocolLib/tree/master/TinyProtocol) library.
+
+## Compiling
+
+Notice that TinyProtocol does not support 1.17 currently. If you want to build this plugin from source and want to support 1.17, consider using [this version of TinyProtocol](https://github.com/aadnk/ProtocolLib/pull/194) before it's officially supported.
 
